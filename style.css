@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* background-color: bisque; */
+}
+.heading{
+    text-align: center;
+}
+nav{
+    background-color: black;
+    display: flex;
+    justify-content: right;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0px 50px;
+    margin: 5px, 10px;
+    align-content: center; 
+}
+.pfp{
+    height: 30px;
+    margin: 5px;
+}
+.welcome{
+    text-align: center;
+    margin-top: 10px;
+}
