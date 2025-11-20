@@ -15,7 +15,7 @@ nav a{
     color: white;
     text-decoration: none;
     padding: 0px 50px;
-    margin: 5px, 10px;
+    margin: 5px 10px;
     align-content: center; 
 }
 .pfp{
@@ -25,4 +25,8 @@ nav a{
 .welcome{
     text-align: center;
     margin-top: 10px;
+}
+.subheading{
+    text-align: center;
+    margin: 20px 0px;
 }
