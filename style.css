@@ -25,6 +25,13 @@ nav a {
 .welcome {
   text-align: center;
   margin-top: 10px;
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 50px;
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
 }
 .subheading {
   text-align: center;
@@ -33,7 +40,4 @@ nav a {
 nav a:hover {
   color: #00ffcc;
   text-shadow: 0 0 5px #00ffcc;
-}
-.welcome{
-    background: linear-gradient(135deg, #00c9ff, #92fe9d);
 }
