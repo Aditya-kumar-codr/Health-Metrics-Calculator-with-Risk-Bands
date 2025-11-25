@@ -40,3 +40,4 @@ bmiCalcBtn.addEventListener("click", (event) => {
 
   outputEl.textContent = message;
 });
+
