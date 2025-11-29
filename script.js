@@ -58,18 +58,13 @@ if (bmrCalcBtn) {
     const gender = document.querySelector('input[name="gender"]:checked');
     const selectedGender = gender ? gender.value : null;
 
-    if (!selectedGender){
-      alert("Please select a gender.");
-      return;
-    }
-
-    let bmrValue;
     // Ensure values are present before calculation
-    if (!age.value || !height.value || !weight.value) {
+    if (!age.value || !height.value || !weight.value || !selectedGender) {
         alert("Please enter all details.");
         return;
     }
 
+    let bmrValue;
     if (selectedGender === "male"){
       bmrValue = (10*weight.value) + (6.25*height.value) - (5*age.value) + 5;
     }
@@ -77,6 +72,9 @@ if (bmrCalcBtn) {
       bmrValue = (10*weight.value) + (6.25*height.value) - (5*age.value) - 161;
     }
     const bmr = bmrValue.toFixed(2);
-    bmrOutput.textContent = `Your BMR is ${bmr}.`;
+    let message2 = `Your BMR is ${bmr}.`;
+    if (selectedGender === "male") message2 += "The normal range for men is between 1600 and 1800 calories per day.";
+    else message2 += "The normal range for women is between 1300 and 1500 calories per day.";
+    bmrOutput.textContent = message2;
   });
 }
