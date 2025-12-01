@@ -3,11 +3,12 @@ const bmiCalcBtn = document.getElementById("bmiCalcBtn");
 if (bmiCalcBtn) {
   bmiCalcBtn.addEventListener("click", (event) => {
     // If the button were inside a form, stopping default navigation is safe.
-    if (event && typeof event.preventDefault === 'function') event.preventDefault();
+    if (event && typeof event.preventDefault === "function")
+      event.preventDefault();
 
     const heightRaw = document.getElementById("height").value;
     const weightRaw = document.getElementById("weight").value;
-    const unit = document.getElementById("heightUnit")?.value || 'cm';
+    const unit = document.getElementById("heightUnit")?.value || "cm";
     const outputEl = document.getElementById("bmiOutput");
 
     const height = parseFloat(heightRaw);
@@ -20,9 +21,9 @@ if (bmiCalcBtn) {
 
     let heightMeters = height;
     // Convert based on explicit unit selection
-    if (unit === 'cm') {
+    if (unit === "cm") {
       heightMeters = height / 100;
-    } else if (unit === 'm') {
+    } else if (unit === "m") {
       heightMeters = height;
     }
 
@@ -44,7 +45,6 @@ if (bmiCalcBtn) {
   });
 }
 
-
 //bmr calculator
 const bmrCalcBtn = document.getElementById("bmrCalcBtn");
 
@@ -60,21 +60,24 @@ if (bmrCalcBtn) {
 
     // Ensure values are present before calculation
     if (!age.value || !height.value || !weight.value || !selectedGender) {
-        alert("Please enter all details.");
-        return;
+      alert("Please enter all details.");
+      return;
     }
 
     let bmrValue;
-    if (selectedGender === "male"){
-      bmrValue = (10*weight.value) + (6.25*height.value) - (5*age.value) + 5;
-    }
-    else{
-      bmrValue = (10*weight.value) + (6.25*height.value) - (5*age.value) - 161;
+    if (selectedGender === "male") {
+      bmrValue = 10 * weight.value + 6.25 * height.value - 5 * age.value + 5;
+    } else {
+      bmrValue = 10 * weight.value + 6.25 * height.value - 5 * age.value - 161;
     }
     const bmr = bmrValue.toFixed(2);
     let message2 = `Your BMR is ${bmr}.`;
-    if (selectedGender === "male") message2 += "The normal range for men is between 1600 and 1800 calories per day.";
-    else message2 += "The normal range for women is between 1300 and 1500 calories per day.";
+    if (selectedGender === "male")
+      message2 +=
+        "The normal range for men is between 1600 and 1800 calories per day.";
+    else
+      message2 +=
+        "The normal range for women is between 1300 and 1500 calories per day.";
     bmrOutput.textContent = message2;
   });
 }
