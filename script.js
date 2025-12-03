@@ -15,7 +15,7 @@ if (bmiCalcBtn) {
     const weight = parseFloat(weightRaw);
 
     if (!isFinite(height) || !isFinite(weight) || height <= 0 || weight <= 0) {
-      outputEl.textContent = "Please enter valid positive height and weight.";
+      alert("Please enter valid positive height and weight.");
       return;
     }
 
@@ -28,7 +28,7 @@ if (bmiCalcBtn) {
     }
 
     if (!isFinite(heightMeters) || heightMeters <= 0) {
-      outputEl.textContent = "Height must be a positive number.";
+      alert("Height must be a positive number.");
       return;
     }
 
@@ -41,6 +41,7 @@ if (bmiCalcBtn) {
     else if (bmiValue < 30) message += "You're overweight.";
     else message += "You're in the obese range.";
 
+    outputEl.style.marginTop = "20px";
     outputEl.textContent = message;
   });
 }
@@ -78,6 +79,9 @@ if (bmrCalcBtn) {
     else
       message2 +=
         "The normal range for women is between 1300 and 1500 calories per day.";
+
+    // Apply margin-top to the output element
+    bmrOutput.style.marginTop = "20px";
     bmrOutput.textContent = message2;
   });
 }

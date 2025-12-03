@@ -19,6 +19,49 @@
         ><img src="profile pic.png" alt="profile pic" class="pfp"
       /></a>
     </nav>
+    <main>
+      <section class="profile-container">
+
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <img src="profile pic.png" class="profile-photo" alt="Profile" />
+          <h2 id="userName">Your Name</h2>
+          <p id="userAge">Age: __</p>
+          <p id="userGender">Gender: __</p>
+          <button id="editBtn">Edit Profile</button>
+        </div>
+
+        <!-- Saved Metrics -->
+        <div class="metrics">
+          <h3>Your Health Stats</h3>
+          <p id="savedBMI">Last BMI: __</p>
+          <p id="savedBMR">Last BMR: __</p>
+        </div>
+
+        <!-- Health Summary -->
+        <div class="health-summary">
+          <h3>Health Summary</h3>
+          <p id="summaryText">
+            Your BMI & BMR summary will appear here once calculated.
+          </p>
+        </div>
+
+      </section>
+    </main>
+    <!-- Edit Popup -->
+    <div class="popup-background" id="popupBg">
+      <div class="popup-box">
+        <h3>Edit Profile</h3>
+        <input type="text" id="nameInput" placeholder="Enter Name" />
+        <input type="number" id="ageInput" placeholder="Enter Age" />
+        <select id="genderInput">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <button id="saveBtn">Save</button>
+      </div>
+    </div>
 
     <!-- Footer Credits -->
     <footer class="site-footer">
