@@ -15,7 +15,9 @@ if (bmiCalcBtn) {
     const weight = parseFloat(weightRaw);
 
     if (!isFinite(height) || !isFinite(weight) || height <= 0 || weight <= 0) {
-      alert("Please enter valid positive height and weight.");
+      outputEl.textContent = "Please enter valid positive numbers for height and weight.";
+      outputEl.style.marginTop = "20px";
+      outputEl.style.color = "red";
       return;
     }
 
@@ -25,11 +27,6 @@ if (bmiCalcBtn) {
       heightMeters = height / 100;
     } else if (unit === "m") {
       heightMeters = height;
-    }
-
-    if (!isFinite(heightMeters) || heightMeters <= 0) {
-      alert("Height must be a positive number.");
-      return;
     }
 
     const bmiValue = weight / (heightMeters * heightMeters);
@@ -61,7 +58,9 @@ if (bmrCalcBtn) {
 
     // Ensure values are present before calculation
     if (!age.value || !height.value || !weight.value || !selectedGender) {
-      alert("Please enter all details.");
+      bmrOutput.textContent = "Please enter valid positive numbers for height and weight.";
+      bmrOutput.style.marginTop = "20px";
+      bmrOutput.style.color = "red";
       return;
     }
 
