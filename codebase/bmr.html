@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculate your BMI</title>
+    <title>Calculate your BMR</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,28 +15,36 @@
       <a href="bmi.html">BMI</a>
       <a href="bmr.html">BMR</a>
       <a href="profile.html"
-        ><img src="profile pic.png" alt="profile pic" class="pfp"
+        ><img src="../Images/profile pic.png" alt="profile pic" class="pfp"
       /></a>
     </nav>
     <main>
       <div class="container">
         <h3 class="subheading">Enter your details</h3>
-        <form class="detail" action="" onsubmit="return false;">
+        <form class="detail" action="">
+          <p class="gender">
+            Gender:
+            <br />
+            <input type="radio" name="gender" id="male" value="male" />
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="female" />
+            <label for="female">Female</label>
+          </p>
           <div class="input-group">
+            <label for="age">Age: </label>
+            <input
+              type="number"
+              id="age"
+              placeholder="Enter your age. (E.g. 25)"
+            />
+            <br />
+            <br />
             <label for="height">Height: </label>
-            <div class="unit">
-              <input
-                type="number"
-                id="height"
-                placeholder="Enter your height. (E.g. 170)"
-                step="any"
-                aria-label="Height value"
-              />
-              <select id="heightUnit" aria-label="Height unit">
-                <option value="cm">cm</option>
-                <option value="m">m</option>
-              </select>
-            </div>
+            <input
+              type="number"
+              id="height"
+              placeholder="Enter your height. (E.g. 170)"
+            />
             <br />
             <br />
             <label for="weight">Weight: </label>
@@ -44,14 +52,11 @@
               type="number"
               id="weight"
               placeholder="Enter your weight. (E.g. 65)"
-              step="any"
-              aria-label="Weight in kilograms"
             />
-            <br />
-            <br />
+            <br /><br />
           </div>
-          <button type="button" id="bmiCalcBtn">Calculate BMI</button>
-          <p id="bmiOutput"></p>
+          <button type="button" id="bmrCalcBtn">Calculate BMR</button>
+          <p id="bmrOutput"></p>
         </form>
       </div>
     </main>

@@ -140,6 +140,12 @@ body {
   margin-bottom: 6px;
   color: #34495e;
 }
+.gender {
+  margin-bottom: 14px;
+}
+.gender input[type="radio"] {
+  margin-top: 6px;
+}
 .input-group input {
   width: 100%;
   padding: 14px;
