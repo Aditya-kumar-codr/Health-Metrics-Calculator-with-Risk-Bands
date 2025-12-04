@@ -16,7 +16,8 @@ if (bmiCalcBtn) {
     const weight = parseFloat(weightRaw);
 
     if (!isFinite(height) || !isFinite(weight) || height <= 0 || weight <= 0) {
-      outputEl.textContent = "Please enter valid positive numbers for height and weight.";
+      outputEl.textContent =
+        "Please enter valid positive numbers for height and weight.";
       outputEl.style.marginTop = "20px";
       outputEl.style.color = "red";
       return;
@@ -34,10 +35,15 @@ if (bmiCalcBtn) {
     const bmi = bmiValue.toFixed(2);
 
     let message = `Your BMI is ${bmi}. `;
-    if (bmiValue < 18.5) message += "You're underweight.";
-    else if (bmiValue < 25) message += "You're in the normal range.";
-    else if (bmiValue < 30) message += "You're overweight.";
-    else message += "You're in the obese range.";
+    if (bmiValue < 18.5) {
+      message += "You're underweight.";
+    } else if (bmiValue < 25) {
+      message += "You're in the normal range.";
+    } else if (bmiValue < 30) {
+      message += "You're overweight.";
+    } else {
+      message += "You're in the obese range.";
+    }
 
     outputEl.style.marginTop = "20px";
     outputEl.textContent = message;
@@ -50,6 +56,7 @@ if (bmiCalcBtn) {
     const savedBMR = localStorage.getItem("bmr");
     const bmrMessage = localStorage.getItem("bmrMessage");
     let summary = `BMI: ${bmi}. `;
+
     if (savedBMR && bmrMessage) {
       summary += `BMR: ${savedBMR} calories/day. Combined health assessment: `;
       if (message.includes("normal")) {
@@ -81,26 +88,31 @@ if (bmrCalcBtn) {
 
     // Ensure values are present before calculation
     if (!age.value || !height.value || !weight.value || !selectedGender) {
-      bmrOutput.textContent = "Please enter valid positive numbers for height and weight.";
+      bmrOutput.textContent =
+        "Please enter valid positive numbers for height and weight.";
       bmrOutput.style.marginTop = "20px";
       bmrOutput.style.color = "red";
       return;
     }
 
     let bmrValue;
+
     if (selectedGender === "male") {
       bmrValue = 10 * weight.value + 6.25 * height.value - 5 * age.value + 5;
     } else {
       bmrValue = 10 * weight.value + 6.25 * height.value - 5 * age.value - 161;
     }
+
     const bmr = bmrValue.toFixed(2);
-    let message2 = `Your BMR is ${bmr}.`;
-    if (selectedGender === "male")
+    let message2 = `Your BMR is ${bmr}. `;
+
+    if (selectedGender === "male") {
       message2 +=
         "The normal range for men is between 1600 and 1800 calories per day.";
-    else
+    } else {
       message2 +=
         "The normal range for women is between 1300 and 1500 calories per day.";
+    }
 
     bmrOutput.style.marginTop = "20px";
     bmrOutput.textContent = message2;
@@ -113,6 +125,7 @@ if (bmrCalcBtn) {
     const savedBMI = localStorage.getItem("bmi");
     const bmiCategory = localStorage.getItem("bmiCategory");
     let summary = `BMR: ${bmr} calories/day. `;
+
     if (savedBMI && bmiCategory) {
       summary += `BMI: ${savedBMI}. Combined health assessment: `;
       if (bmiCategory.includes("normal")) {
@@ -122,6 +135,7 @@ if (bmrCalcBtn) {
           "Consider consulting a healthcare professional for personalized advice.";
       }
     }
+
     localStorage.setItem("summary", summary);
   });
 }
