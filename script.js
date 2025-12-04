@@ -33,6 +33,9 @@ if (bmiCalcBtn) {
 
     const bmiValue = weight / (heightMeters * heightMeters);
     const bmi = bmiValue.toFixed(2);
+    // Save BMI to localStorage
+    localStorage.setItem("savedBMI", bmi);
+
 
     let message = `Your BMI is ${bmi}. `;
     if (bmiValue < 18.5) {
@@ -104,6 +107,11 @@ if (bmrCalcBtn) {
     }
 
     const bmr = bmrValue.toFixed(2);
+    // Save BMR to localStorage
+    localStorage.setItem("savedBMR", bmr);
+
+    let message2 = `Your BMR is ${bmr}.`;
+    if (selectedGender === "male")
     let message2 = `Your BMR is ${bmr}. `;
 
     if (selectedGender === "male") {
@@ -198,3 +206,34 @@ document.getElementById("popupBg").addEventListener("click", (e) => {
     document.getElementById("popupBg").style.display = "none";
   }
 });
+
+// =======================
+// Chart.js on Profile Page
+// =======================
+if (document.getElementById("healthChart")) {
+
+  // Read saved BMI & BMR values
+  const savedBMI = parseFloat(localStorage.getItem("savedBMI")) || 0;
+  const savedBMR = parseFloat(localStorage.getItem("savedBMR")) || 0;
+
+  const ctx = document.getElementById("healthChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["BMI", "BMR"],
+      datasets: [{
+        label: "Your Health Metrics",
+        data: [savedBMI, savedBMR],
+        backgroundColor: ["#4dabf7", "#ffa94d"],
+        borderColor: ["#1c7ed6", "#f76707"],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
