@@ -84,3 +84,30 @@ if (bmrCalcBtn) {
     bmrOutput.textContent = message2;
   });
 }
+
+// Chart.js display on Profile Page
+if (document.getElementById("healthChart")) {
+  const ctx = document.getElementById("healthChart");
+
+  const savedBMI = localStorage.getItem("savedBMI") || 0;
+  const savedBMR = localStorage.getItem("savedBMR") || 0;
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["BMI", "BMR"],
+      datasets: [
+        {
+          label: "Your Health Metrics",
+          data: [savedBMI, savedBMR],
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
