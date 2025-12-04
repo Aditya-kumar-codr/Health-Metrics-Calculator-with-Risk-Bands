@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .heading {
   text-align: center;
 }
@@ -23,6 +24,7 @@ nav a:hover {
   color: #00ffcc;
   text-shadow: 0 0 5px #00ffcc;
 }
+
 .pfp {
   height: 30px;
   width: 30px;
@@ -36,6 +38,7 @@ main {
   box-shadow: 0 0 10px aqua;
   overflow: hidden;
 }
+
 body {
   background-color: #f8f9fa;
   font-family: "Arial", "Helvetica", sans-serif;
@@ -51,6 +54,7 @@ body {
   padding: 10px;
   background: linear-gradient(135deg, #00c9ff, #92fe9d);
 }
+
 .quick-access {
   text-align: center;
   padding: 2rem;
@@ -63,6 +67,7 @@ body {
   flex-wrap: wrap;
   margin-top: 10px;
 }
+
 .metric-card {
   background: white;
   border-radius: 10px;
@@ -76,6 +81,7 @@ body {
 .metric-card:hover {
   transform: scale(1.05);
 }
+
 .metric-card img {
   width: 50px;
   margin-bottom: 0.5rem;
@@ -85,6 +91,7 @@ body {
   padding: 2rem;
   text-align: center;
 }
+
 .health-tips ul {
   list-style: none;
   padding: 0;
@@ -93,6 +100,7 @@ body {
   margin: 0.5rem 0;
   font-weight: 500;
 }
+
 .site-footer {
   background: #263238;
   color: white;
@@ -114,6 +122,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
 .container h3 {
   text-align: center;
   margin-bottom: 25px;
@@ -128,6 +137,7 @@ body {
 .unit input {
   flex: 1;
 }
+
 .unit select {
   height: 48px;
 }
@@ -141,6 +151,7 @@ body {
 .gender {
   margin-bottom: 14px;
 }
+
 .gender input[type="radio"] {
   margin-top: 6px;
 }
@@ -158,6 +169,7 @@ body {
 .input-group input:focus {
   box-shadow: 0 0 0 2px #6ab0ff;
 }
+
 button {
   width: 100%;
   padding: 14px;
@@ -197,7 +209,6 @@ button:hover {
 }
 
 /* ===== Profile Page ===== */
-
 .profile-container {
   padding: 30px;
   text-align: center;
