@@ -36,6 +36,18 @@ if (bmiCalcBtn) {
     // Save BMI to localStorage
     localStorage.setItem("savedBMI", bmi);
 
+    // Save BMI history (last 5 calculations)
+    let bmiHistory = JSON.parse(localStorage.getItem("bmiHistory")) || [];
+    bmiHistory.unshift({
+      value: bmi,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+    });
+    // Keep only last 5 calculations
+    if (bmiHistory.length > 5) {
+      bmiHistory = bmiHistory.slice(0, 5);
+    }
+    localStorage.setItem("bmiHistory", JSON.stringify(bmiHistory));
 
     let message = `Your BMI is ${bmi}. `;
     if (bmiValue < 18.5) {
@@ -110,6 +122,19 @@ if (bmrCalcBtn) {
     // Save BMR to localStorage
     localStorage.setItem("savedBMR", bmr);
 
+    // Save BMR history (last 5 calculations)
+    let bmrHistory = JSON.parse(localStorage.getItem("bmrHistory")) || [];
+    bmrHistory.unshift({
+      value: bmr,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+    });
+    // Keep only last 5 calculations
+    if (bmrHistory.length > 5) {
+      bmrHistory = bmrHistory.slice(0, 5);
+    }
+    localStorage.setItem("bmrHistory", JSON.stringify(bmrHistory));
+
     let message2 = `Your BMR is ${bmr}. `;
 
     if (selectedGender === "male") {
@@ -166,6 +191,54 @@ window.addEventListener("load", () => {
   document.getElementById("savedBMR").textContent =
     "Last BMR: " + (localStorage.getItem("bmr") || "—");
 
+  // Display BMI history
+  const bmiHistoryContainer = document.getElementById("bmiHistory");
+  if (bmiHistoryContainer) {
+    const bmiHistory = JSON.parse(localStorage.getItem("bmiHistory")) || [];
+    if (bmiHistory.length > 0) {
+      bmiHistoryContainer.innerHTML = "<h4>Recent BMI Calculations</h4>";
+      const bmiList = document.createElement("ul");
+      bmiList.className = "history-list";
+      bmiHistory.forEach((entry, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${
+          index + 1
+        }.</strong> BMI: <span class="value">${
+          entry.value
+        }</span> - <span class="timestamp">${entry.date} ${entry.time}</span>`;
+        bmiList.appendChild(listItem);
+      });
+      bmiHistoryContainer.appendChild(bmiList);
+    } else {
+      bmiHistoryContainer.innerHTML = "<p>No BMI calculations yet.</p>";
+    }
+  }
+
+  // Display BMR history
+  const bmrHistoryContainer = document.getElementById("bmrHistory");
+  if (bmrHistoryContainer) {
+    const bmrHistory = JSON.parse(localStorage.getItem("bmrHistory")) || [];
+    if (bmrHistory.length > 0) {
+      bmrHistoryContainer.innerHTML = "<h4>Recent BMR Calculations</h4>";
+      const bmrList = document.createElement("ul");
+      bmrList.className = "history-list";
+      bmrHistory.forEach((entry, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${
+          index + 1
+        }.</strong> BMR: <span class="value">${
+          entry.value
+        }</span> cal/day - <span class="timestamp">${entry.date} ${
+          entry.time
+        }</span>`;
+        bmrList.appendChild(listItem);
+      });
+      bmrHistoryContainer.appendChild(bmrList);
+    } else {
+      bmrHistoryContainer.innerHTML = "<p>No BMR calculations yet.</p>";
+    }
+  }
+
   document.getElementById("summaryText").textContent =
     localStorage.getItem("summary") ||
     "Your BMI & BMR summary will appear here once calculated.";
@@ -209,7 +282,6 @@ document.getElementById("popupBg").addEventListener("click", (e) => {
 // Chart.js on Profile Page
 // =======================
 if (document.getElementById("healthChart")) {
-
   // Read saved BMI & BMR values
   const savedBMI = parseFloat(localStorage.getItem("savedBMI")) || 0;
   const savedBMR = parseFloat(localStorage.getItem("savedBMR")) || 0;
@@ -220,18 +292,20 @@ if (document.getElementById("healthChart")) {
     type: "bar",
     data: {
       labels: ["BMI", "BMR"],
-      datasets: [{
-        label: "Your Health Metrics",
-        data: [savedBMI, savedBMR],
-        backgroundColor: ["#4dabf7", "#ffa94d"],
-        borderColor: ["#1c7ed6", "#f76707"],
-        borderWidth: 2
-      }]
+      datasets: [
+        {
+          label: "Your Health Metrics",
+          data: [savedBMI, savedBMR],
+          backgroundColor: ["#4dabf7", "#ffa94d"],
+          borderColor: ["#1c7ed6", "#f76707"],
+          borderWidth: 2,
+        },
+      ],
     },
     options: {
       scales: {
-        y: { beginAtZero: true }
-      }
-    }
+        y: { beginAtZero: true },
+      },
+    },
   });
 }

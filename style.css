@@ -233,7 +233,7 @@ button:hover {
 
 /* Stats */
 .metrics,
-.health-summary {
+.health-summary, .metrics-chart {
   background: white;
   margin: 20px auto;
   padding: 20px;
@@ -246,6 +246,55 @@ button:hover {
 .metrics h3,
 .health-summary h3 {
   margin-bottom: 10px;
+}
+
+/* Calculation History Styles */
+.calculation-history {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #007bff;
+}
+
+.calculation-history h4 {
+  color: #007bff;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.history-list li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2);
+}
+
+.history-list .value {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.history-list .timestamp {
+  color: #6c757d;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 /* Popup */

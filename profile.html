@@ -37,11 +37,24 @@
           <h3>Your Health Stats</h3>
           <p id="savedBMI">Last BMI: __</p>
           <p id="savedBMR">Last BMR: __</p>
+
+          <!-- BMI History -->
+          <div id="bmiHistory" class="calculation-history">
+            <p>No BMI calculations yet.</p>
+          </div>
+
+          <!-- BMR History -->
+          <div id="bmrHistory" class="calculation-history">
+            <p>No BMR calculations yet.</p>
+          </div>
         </div>
         <!-- Chart Section -->
         <div class="metrics-chart">
           <h3>Your BMI & BMR Graph</h3>
-          <canvas id="healthChart" style="max-width: 500px; margin: auto;"></canvas>
+          <canvas
+            id="healthChart"
+            style="max-width: 500px; margin: auto"
+          ></canvas>
         </div>
 
         <!-- Health Summary -->
