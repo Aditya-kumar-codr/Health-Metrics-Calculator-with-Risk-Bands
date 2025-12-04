@@ -325,3 +325,42 @@ button:hover {
   border-radius: 10px;
   border: 1px solid #ccc;
 }
+
+/* ===== Comparison Charts Layout ===== */
+.comparison-charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.chart-wrapper {
+  flex: 1 1 320px; /* responsive: min 320px, grows as space allows */
+  max-width: 480px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.chart-container {
+  width: 100%;
+  margin: 8px auto;
+  padding: 4px 0;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 260px !important; /* adjust height as you like */
+}
+
+.chart-note {
+  font-size: 13px;
+  color: #555;
+  margin-top: 8px;
+}

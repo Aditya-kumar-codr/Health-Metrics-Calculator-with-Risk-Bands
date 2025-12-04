@@ -49,13 +49,27 @@
           </div>
         </div>
         <!-- Chart Section -->
-        <div class="metrics-chart">
-          <h3>Your BMI & BMR Graph</h3>
-          <canvas
-            id="healthChart"
-            style="max-width: 500px; margin: auto"
-          ></canvas>
-        </div>
+        <!-- Comparison Charts: BMI vs Normal and BMR vs Normal -->
+<section class="comparison-charts">
+
+  <div class="chart-wrapper">
+    <h3>BMI — You vs Normal Range</h3>
+    <div class="chart-container">
+      <canvas id="bmiCompareChart"></canvas>
+    </div>
+    <p class="chart-note">Normal BMI range: 18.5 – 24.9</p>
+  </div>
+
+  <div class="chart-wrapper">
+    <h3>BMR — You vs Normal Range</h3>
+    <div class="chart-container">
+      <canvas id="bmrCompareChart"></canvas>
+    </div>
+    <p class="chart-note">Normal BMR (approx): Men 1600–1800, Women 1300–1500</p>
+  </div>
+
+</section>
+
 
         <!-- Health Summary -->
         <div class="health-summary">

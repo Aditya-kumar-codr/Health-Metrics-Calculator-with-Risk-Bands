@@ -280,32 +280,168 @@ document.getElementById("popupBg").addEventListener("click", (e) => {
 
 // =======================
 // Chart.js on Profile Page
-// =======================
-if (document.getElementById("healthChart")) {
-  // Read saved BMI & BMR values
-  const savedBMI = parseFloat(localStorage.getItem("savedBMI")) || 0;
-  const savedBMR = parseFloat(localStorage.getItem("savedBMR")) || 0;
+// ================================
+// Comparison Charts: BMI & BMR vs Normal
+// ================================
+(function createComparisonCharts() {
+  // Wait for DOM + Chart.js to be ready
+  window.addEventListener("load", () => {
+    // Ensure saved keys exist (fallback to 0)
+    const rawBMI = localStorage.getItem("savedBMI");
+    const rawBMR = localStorage.getItem("savedBMR");
+    const gender = (localStorage.getItem("gender") || "").toLowerCase();
 
-  const ctx = document.getElementById("healthChart").getContext("2d");
+    const userBMI = Number(rawBMI) || 0;
+    const userBMR = Number(rawBMR) || 0;
 
-  new Chart(ctx, {
-    type: "pie",
-    data: {
-      labels: ["BMI", "BMR"],
-      datasets: [
-        {
-          label: "Your Health Metrics",
-          data: [savedBMI, savedBMR],
-          backgroundColor: ["#4dabf7", "#ffa94d"],
-          borderColor: ["#1c7ed6", "#f76707"],
-          borderWidth: 2,
+    /* -------- BMI normal values --------
+       Official normal BMI range: 18.5 - 24.9
+       We'll show:
+         - user's BMI
+         - normalMin (18.5)
+         - normalAvg (21.7) for quick visual center
+         - normalMax (24.9)
+    */
+    const bmiNormalMin = 18.5;
+    const bmiNormalMax = 24.9;
+    const bmiNormalAvg = (bmiNormalMin + bmiNormalMax) / 2; // 21.7
+
+    // BMI Chart
+    const bmiCanvas = document.getElementById("bmiCompareChart");
+    if (bmiCanvas) {
+      const ctx = bmiCanvas.getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["You", "Normal Min", "Normal Avg", "Normal Max"],
+          datasets: [{
+            label: "BMI Comparison",
+            data: [
+              isNaN(userBMI) ? 0 : userBMI,
+              bmiNormalMin,
+              bmiNormalAvg,
+              bmiNormalMax
+            ],
+            backgroundColor: [
+              "#4dabf7", // user
+              "#cfe9ff", // normal min
+              "#89c2ff", // normal mid
+              "#cfe9ff"  // normal max
+            ],
+            borderColor: [
+              "#1c7ed6",
+              "#8fbce8",
+              "#5aa0e6",
+              "#8fbce8"
+            ],
+            borderWidth: 1
+          }]
         },
-      ],
-    },
-    options: {
-      scales: {
-        y: { beginAtZero: true },
-      },
-    },
-  });
-}
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    /* -------- BMR normal values --------
+       Typical approximate ranges:
+         - Men: 1600 - 1800 (avg 1700)
+         - Women: 1300 - 1500 (avg 1400)
+       If gender unknown, show both ranges' averages as separate bars for context.
+    */
+    const bmrMaleMin = 1600;
+    const bmrMaleMax = 1800;
+    const bmrMaleAvg = (bmrMaleMin + bmrMaleMax) / 2; //1700
+
+    const bmrFemaleMin = 1300;
+    const bmrFemaleMax = 1500;
+    const bmrFemaleAvg = (bmrFemaleMin + bmrFemaleMax) / 2; //1400
+
+    // BMR Chart
+    const bmrCanvas = document.getElementById("bmrCompareChart");
+    if (bmrCanvas) {
+      const ctx2 = bmrCanvas.getContext("2d");
+
+      if (gender === "male" || gender === "female") {
+        // Use the single gender's normal range to compare
+        const normMin = gender === "male" ? bmrMaleMin : bmrFemaleMin;
+        const normAvg = gender === "male" ? bmrMaleAvg : bmrFemaleAvg;
+        const normMax = gender === "male" ? bmrMaleMax : bmrFemaleMax;
+
+        new Chart(ctx2, {
+          type: "bar",
+          data: {
+            labels: ["You", "Normal Min", "Normal Avg", "Normal Max"],
+            datasets: [{
+              label: "BMR Comparison",
+              data: [
+                isNaN(userBMR) ? 0 : userBMR,
+                normMin,
+                normAvg,
+                normMax
+              ],
+              backgroundColor: [
+                "#ffa94d", // user
+                "#ffe8cc",
+                "#ffd09a",
+                "#ffe8cc"
+              ],
+              borderColor: [
+                "#f76707",
+                "#e6a65a",
+                "#f59a2f",
+                "#e6a65a"
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            plugins: {
+              legend: { display: false }
+            },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+
+      } else {
+        // Gender unknown: show user's value plus both male & female averages for context
+        new Chart(ctx2, {
+          type: "bar",
+          data: {
+            labels: ["You", "Male Avg", "Female Avg"],
+            datasets: [{
+              label: "BMR Comparison (gender unknown)",
+              data: [
+                isNaN(userBMR) ? 0 : userBMR,
+                bmrMaleAvg,
+                bmrFemaleAvg
+              ],
+              backgroundColor: [
+                "#ffa94d",
+                "#ffe6d0",
+                "#fff0d9"
+              ],
+              borderColor: [
+                "#f76707",
+                "#e6a65a",
+                "#f1b86b"
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            plugins: {
+              legend: { display: false }
+            },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+      }
+    }
+  }); // load
+})(); // IIFE
