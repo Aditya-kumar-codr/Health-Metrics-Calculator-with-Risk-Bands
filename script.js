@@ -110,8 +110,6 @@ if (bmrCalcBtn) {
     // Save BMR to localStorage
     localStorage.setItem("savedBMR", bmr);
 
-    let message2 = `Your BMR is ${bmr}.`;
-    if (selectedGender === "male")
     let message2 = `Your BMR is ${bmr}. `;
 
     if (selectedGender === "male") {
